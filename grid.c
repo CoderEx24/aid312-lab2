@@ -28,18 +28,18 @@ bool grid_attempt_placement(Grid grid, size_t x, size_t y, int number)
 {
     // check row
     for (size_t i = 0; i < 9; i ++)
-        if (grid[i + y * 9] == number)
+        if (grid[i + y * 9] == number && i != x)
             return false;
 
     // check column
     for (size_t j = 0; j < 9; j ++)
-        if (grid[x + j * 9] == number)
+        if (grid[x + j * 9] == number && j != y)
             return false;
 
     // check block
     for (size_t i = 0; i < 3; i ++)
         for (size_t j = 0; j < 3; j ++)
-            if (grid[(x / 3 + i) + (y / 3 + j) * 9] == number)
+            if (grid[(x / 3 + i) + (y / 3 + j) * 9] == number && (x / 3 + i) + (y / 3 + j) * 9 != x + y * 9)
                 return false;
 
     grid[x + y * 9] = number;
