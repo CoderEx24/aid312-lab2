@@ -7,7 +7,7 @@
 int main()
 {
     InitWindow(WIDTH, HEIGHT, "Sudoku");
-    int x = 0, y = 0;
+    int x = 2, y = 0;
     Grid grid = grid_init();
 
     grid[3] = 2;
@@ -30,8 +30,8 @@ int main()
         
         DrawRectangle(10 + WIDTH * x / 9, 
                       10 + HEIGHT * y / 9,
-                      -20 + WIDTH * (x + 1) / 9, 
-                      -20 + HEIGHT * (y + 1) / 9, YELLOW);
+                      -20 + WIDTH / 9, 
+                      -20 + HEIGHT / 9, YELLOW);
 
         // draw numbers
 
@@ -46,6 +46,21 @@ int main()
                              100, BLACK);
 
         EndDrawing();
+
+        if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_H))
+            x = (x + 8) % 9;
+        else if (IsKeyPressed(KEY_W) || IsKeyPressed(KEY_K))
+            y = (y + 8) % 9;
+        else if (IsKeyPressed(KEY_D) || IsKeyPressed(KEY_L))
+            x = (x + 1) % 9;
+        else if (IsKeyPressed(KEY_S) || IsKeyPressed(KEY_J))
+            y = (y + 1) % 9;
+
+        const int numbers[] = { KEY_ONE, KEY_TWO, KEY_THREE, KEY_FOUR, KEY_FIVE, KEY_SIX, KEY_SEVEN, KEY_EIGHT, KEY_NINE, };
+
+        for (size_t i = 0; i < 9; i ++)
+            if (IsKeyPressed(numbers[i]))
+                grid_attempt_placement(grid, x, y, i + 1);
     }
 
     CloseWindow();
