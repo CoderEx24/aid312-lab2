@@ -1,11 +1,25 @@
 #include "grid.h"
 #include <stdlib.h>
+#include <time.h>
 
 Grid grid_init()
 {
+    srand(time(0));
+
+    int n_blocks = rand() % 81;
+
     Grid grid = (Grid) malloc(81 * sizeof(unsigned short));
     for (size_t i = 0; i < 81; i ++)
         grid[i] = 0;
+
+    for (size_t i = 0; i < n_blocks; i ++)
+    {
+        int random_x = rand() % 9;
+        int random_y = rand() % 9;
+        int random_number = rand() % 9 + 1;
+
+        grid_attempt_placement(grid, random_x, random_y, random_number);
+    }
 
     return grid;
 }

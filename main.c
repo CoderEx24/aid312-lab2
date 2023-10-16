@@ -10,10 +10,6 @@ int main()
     int x = 2, y = 0;
     Grid grid = grid_init();
 
-    grid[3] = 2;
-    grid[7] = 8;
-    grid[12] = 1;
-
     while (!WindowShouldClose())
     {
         ClearBackground(WHITE);
