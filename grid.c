@@ -39,7 +39,7 @@ bool grid_attempt_placement(Grid grid, size_t x, size_t y, int number)
     // check block
     for (size_t i = 0; i < 3; i ++)
         for (size_t j = 0; j < 3; j ++)
-            if (grid[(x / 3 + i) + (y / 3 + j) * 9] == number && (x / 3 + i) + (y / 3 + j) * 9 != x + y * 9)
+            if (grid[(3 * (x / 3) + i) + (3 * (y / 3) + j) * 9] == number && (x / 3 + i) + (y / 3 + j) * 9 != x + y * 9)
                 return false;
 
     grid[x + y * 9] = number;
