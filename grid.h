@@ -7,6 +7,7 @@
 typedef unsigned short* Grid;
 
 Grid grid_init();
+Grid grid_copy(Grid);
 bool grid_attempt_placement(Grid, size_t, size_t, int);
 void grid_free(Grid);
 

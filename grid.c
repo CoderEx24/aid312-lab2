@@ -24,6 +24,15 @@ Grid grid_init()
     return grid;
 }
 
+Grid grid_copy(Grid this)
+{
+    Grid new_grid = (Grid) malloc(81 * sizeof(unsigned short));
+    for (size_t i = 0; i < 81; i ++)
+        new_grid[i] = 0;
+
+    return new_grid;
+}
+
 bool grid_attempt_placement(Grid grid, size_t x, size_t y, int number)
 {
     // check row
