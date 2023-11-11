@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "grid.h"
+#include "solver.h"
 
 #define WIDTH  900
 #define HEIGHT 900
@@ -9,7 +10,24 @@ int main()
     InitWindow(WIDTH, HEIGHT, "Sudoku");
     int x = 2, y = 0;
     Grid grid = grid_init();
+    Domains domains = domains_init();
+    
+    bool result = ac3(grid, domains);
 
+    TraceLog(LOG_INFO, "result is %i", result);
+
+/*    for (int i = 0; i < 9; i ++)
+    {
+        for (int j = 0; j < 9; j ++)
+        {
+            TraceLog(LOG_INFO, "Domain of (%i, %i):-\n", i, j);
+
+            for (int k = 0; k < 9; k ++)
+                if (domains[j + i * 9][k])
+                    TraceLog(LOG_INFO, "\b\t%i", k + 1);
+        }
+    }
+*/
     while (!WindowShouldClose())
     {
         ClearBackground(WHITE);
